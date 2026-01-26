@@ -1,0 +1,87 @@
+name: Configure 3rd Party Notice
+description: Creates a glf.json configuration file for use with generate-license-file
+
+inputs:
+  inputs:
+    description: An array of locations for package.json files
+    required: false
+    default: |
+      package.json
+  output:
+    description: Path where the 3rd party notice file will be saved
+    required: false
+    default: ./public/ThirdPartyNotices.txt
+  replacements:
+    description: An array of package/license objects for packages with missing or ambiguous licenses
+    required: false
+    default: ""
+  exclude:
+    description: An array of regex patterns for packages to exclude from the notice
+    required: false
+    default: |
+      /^@ugrc\/.*$/
+
+runs:
+  using: composite
+  steps:
+    - name: 📝 Create glf.json configuration
+      shell: bash
+      env:
+        INPUTS: ${{ inputs.inputs }}
+        OUTPUT: ${{ inputs.output }}
+        REPLACEMENTS: ${{ inputs.replacements }}
+        EXCLUDE: ${{ inputs.exclude }}
+      run: |
+        # Parse inputs into JSON array
+        inputs_json=$(echo "$INPUTS" | grep -v '^$' | jq -R -s 'split("\n") | map(select(length > 0) | gsub("^\\s+|\\s+$";"") | select(length > 0) | gsub("^- ";""))')
+
+        # Parse exclude patterns into JSON array
+        exclude_json=$(echo "$EXCLUDE" | grep -v '^$' | jq -R -s 'split("\n") | map(select(length > 0) | gsub("^\\s+|\\s+$";"") | select(length > 0) | gsub("^- ";""))')
+
+        # Build replacements object from array format
+        # Format expected:
+        # - package: pkg-name
+        #   license: https://...
+        if [ -n "$REPLACEMENTS" ] && [ "$REPLACEMENTS" != "" ]; then
+          replace_json=$(echo "$REPLACEMENTS" | awk '
+            /package:/ {
+              gsub(/.*package:/, "")
+              gsub(/^[ \t]+/, "")
+              gsub(/[ \t]+$/, "")
+              pkg=$0
+            }
+            /license:/ {
+              gsub(/.*license:/, "")
+              gsub(/^[ \t]+/, "")
+              gsub(/[ \t]+$/, "")
+              print "{\"" pkg "\": \"" $0 "\"}"
+            }
+          ' | jq -s 'add // {}')
+        else
+          replace_json='{}'
+        fi
+
+        # Merge with existing config.json replacements
+        if [ -f "${GITHUB_ACTION_PATH}/config.json" ]; then
+          existing_replace=$(jq '.replace // {}' "${GITHUB_ACTION_PATH}/config.json")
+          replace_json=$(echo "$existing_replace $replace_json" | jq -s 'add')
+        fi
+
+        # Create the glf.json configuration file
+        jq -n \
+          --argjson inputs "$inputs_json" \
+          --arg output "$OUTPUT" \
+          --argjson exclude "$exclude_json" \
+          --argjson replace "$replace_json" \
+          '{
+            inputs: $inputs,
+            output: $output,
+            overwrite: true,
+            ci: true,
+            exclude: $exclude,
+            omitVersions: true,
+            replace: $replace
+          }' > glf.json
+
+        echo "📄 Created glf.json:"
+        cat glf.json
