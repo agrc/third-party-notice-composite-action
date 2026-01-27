@@ -24,7 +24,7 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: 📝 Create glf.json configuration
+    - name: 📝 Create configuration
       shell: bash
       env:
         INPUTS: ${{ inputs.inputs }}
@@ -83,5 +83,14 @@ runs:
             replace: $replace
           }' > glf.json
 
-        echo "📄 Created glf.json:"
-        cat glf.json
+        # Output configuration to GitHub Actions job summary
+        echo "### 3rd party notice configuration" >> $GITHUB_STEP_SUMMARY
+        echo '```json' >> $GITHUB_STEP_SUMMARY
+        cat glf.json | jq . >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
+
+    - name: 🏗️ Generate 3rd party notices
+      run: npx generate-license-file --config glf.json
+
+    - name: 🧹 Cleanup configuration
+      run: rm glf.json
