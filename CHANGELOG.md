@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.7](https://github.com/agrc/third-party-notice-composite-action/compare/v1.0.6...v1.0.7) (2026-01-27)
+
+
+### Bug Fixes
+
+* make all steps run in same directory ([dd1abec](https://github.com/agrc/third-party-notice-composite-action/commit/dd1abeced296ff7707b21d6946cd95d11b43b906))
+
 ## [1.0.6](https://github.com/agrc/third-party-notice-composite-action/compare/v1.0.5...v1.0.6) (2026-01-27)
 
 
