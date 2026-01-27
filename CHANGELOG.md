@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/agrc/third-party-notice-composite-action/compare/v1.0.4...v1.0.5) (2026-01-27)
+
+
+### Bug Fixes
+
+* install dependencies for the tool ([cf111f0](https://github.com/agrc/third-party-notice-composite-action/commit/cf111f01a47ab567b70e6ed805d4f5d0d7169459))
+
 ## [1.0.4](https://github.com/agrc/third-party-notice-composite-action/compare/v1.0.3...v1.0.4) (2026-01-27)
 
 
