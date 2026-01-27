@@ -89,9 +89,13 @@ runs:
         cat glf.json | jq . >> $GITHUB_STEP_SUMMARY
         echo '```' >> $GITHUB_STEP_SUMMARY
 
+    - name: ⬇️ Install dependencies
+      shell: bash
+      run: npm install -g generate-license-file
+
     - name: 🏗️ Generate 3rd party notices
       shell: bash
-      run: npx generate-license-file --config glf.json
+      run: generate-license-file --config glf.json
 
     - name: 🧹 Cleanup configuration
       shell: bash
