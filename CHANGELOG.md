@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/agrc/third-party-notice-composite-action/compare/v1.0.2...v1.0.3) (2026-01-27)
+
+
+### Bug Fixes
+
+* ignore project package manager ([c26897e](https://github.com/agrc/third-party-notice-composite-action/commit/c26897ef3cf33519a5cdeef186d9bd11174a3486))
+
 ## [1.0.2](https://github.com/agrc/third-party-notice-composite-action/compare/v1.0.1...v1.0.2) (2026-01-27)
 
 
