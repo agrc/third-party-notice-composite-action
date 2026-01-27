@@ -20,6 +20,14 @@ inputs:
     required: false
     default: |
       /^@ugrc\/.*$/
+  working-directory:
+    description: The directory to run the build command in
+    required: false
+    default: '.'
+  node-version:
+    description: The version of node to use
+    required: false
+    default: 'lts/*
 
 runs:
   using: composite
@@ -93,9 +101,38 @@ runs:
       shell: bash
       run: npm install -g generate-license-file
 
-    - name: 📦 Enable corepack for pnpm/yarn support
+    - name: ❓ Determine Package Manager
       shell: bash
-      run: corepack enable
+      working-directory: ${{ inputs.working-directory }}
+      id: package-manager
+      run: |
+        if [ -f pnpm-lock.yaml ]; then
+          echo "Using PNPM"
+          echo "name=pnpm" >> $GITHUB_OUTPUT
+          echo "execute=pnpm dlx" >> $GITHUB_OUTPUT
+        else
+          echo "Using NPM"
+          echo "name=npm" >> $GITHUB_OUTPUT
+          echo "execute=npx" >> $GITHUB_OUTPUT
+        fi
+
+    - name: 📦 Setup PNPM
+      if: steps.package-manager.outputs.name == 'pnpm'
+      uses: pnpm/action-setup@v4
+      with:
+        version: latest
+
+    - name: ⎔ Setup Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: ${{ steps.package-manager.outputs.name }}
+        cache-dependency-path: ${{ inputs.working-directory }}
+
+    - name: 📥 Download dependencies
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      run: ${{ steps.package-manager.outputs.name }} install
 
     - name: 🏗️ Generate 3rd party notices
       shell: bash
