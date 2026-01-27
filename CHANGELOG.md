@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.6](https://github.com/agrc/third-party-notice-composite-action/compare/v1.0.5...v1.0.6) (2026-01-27)
+
+
+### Bug Fixes
+
+* correct yaml syntax ([e7a6130](https://github.com/agrc/third-party-notice-composite-action/commit/e7a613056d14cf234c232979b22353396d06224a))
+
 ## [1.0.5](https://github.com/agrc/third-party-notice-composite-action/compare/v1.0.4...v1.0.5) (2026-01-27)
 
 
