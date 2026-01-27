@@ -119,7 +119,6 @@ runs:
 
     - name: 📦 Setup PNPM
       uses: pnpm/action-setup@v4
-      working-directory: ${{ inputs.working-directory }}
       if: steps.package-manager.outputs.name == 'pnpm'
       with:
         version: latest
