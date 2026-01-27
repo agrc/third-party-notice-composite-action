@@ -34,6 +34,7 @@ runs:
   steps:
     - name: 📝 Create configuration
       shell: bash
+      working-directory: ${{ inputs.working-directory }}
       env:
         INPUTS: ${{ inputs.inputs }}
         OUTPUT: ${{ inputs.output }}
@@ -102,9 +103,9 @@ runs:
       run: npm install -g generate-license-file
 
     - name: ❓ Determine Package Manager
+      id: package-manager
       shell: bash
       working-directory: ${{ inputs.working-directory }}
-      id: package-manager
       run: |
         if [ -f pnpm-lock.yaml ]; then
           echo "Using PNPM"
@@ -117,8 +118,9 @@ runs:
         fi
 
     - name: 📦 Setup PNPM
-      if: steps.package-manager.outputs.name == 'pnpm'
       uses: pnpm/action-setup@v4
+      working-directory: ${{ inputs.working-directory }}
+      if: steps.package-manager.outputs.name == 'pnpm'
       with:
         version: latest
 
@@ -136,8 +138,10 @@ runs:
 
     - name: 🏗️ Generate 3rd party notices
       shell: bash
+      working-directory: ${{ inputs.working-directory }}
       run: generate-license-file --config glf.json
 
     - name: 🧹 Cleanup configuration
       shell: bash
+      working-directory: ${{ inputs.working-directory }}
       run: rm glf.json
