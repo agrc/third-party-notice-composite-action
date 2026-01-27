@@ -1,18 +1,6 @@
 # 3rd party notice composite action
 
-A GitHub Action that creates the configuration file for use with [generate-license-file](https://www.npmjs.com/package/generate-license-file) (glf). This action creates a basic license configuration that, when used with the glf tool, inspects a root `package.json` and places it in `./public/ThirdPartyNotices.txt`. The file is placed in the root of the directory and is named `glf.json`.
-
-This is accomplished by executing the tool in a build step using the config file created by the tool.
-
-```sh
-pnpm dlx generate-license-file --config glf.json
-```
-
-or
-
-```sh
-npx generate-license-file --config glf.json
-```
+A GitHub Action that creates a 3rd party notice file. It is placed in the default vite output location in `./public/ThirdPartyNotices.txt`.
 
 ## Usage
 
@@ -38,9 +26,6 @@ jobs:
     steps:
       - name: 📃 Configure 3rd party notice
         uses: agrc/third-party-notice-composite-action@v1
-
-      - name: 🚀 Generate license text
-        run: npx generate-license-file --config glf.json
 ```
 
 ## Configuration
@@ -71,8 +56,6 @@ By default this action creates configuration that reads from a root level `packa
        license: https://raw.githubusercontent.com/Esri/arcgis-rest-js/main/LICENSE
    ```
 
-### Advanced Options
-
 1. *exclude*: an array of regex patterns for packages to exclude from the notice. By default, `@ugrc` scoped packages are excluded since we own them. When using this input, the defaults are replaced.
 
    ```yml
@@ -97,4 +80,18 @@ By default this action creates configuration that reads from a root level `packa
     exclude:
       - /^@ugrc\/.*$/
       - /^@your-package\/.*$/
+```
+
+## Manual execution
+
+The action will add the configuration it used to the summary and can be used with the following node commands.
+
+```sh
+pnpm dlx generate-license-file --config glf.json
+```
+
+or
+
+```sh
+npx generate-license-file --config glf.json
 ```
