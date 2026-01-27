@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/agrc/third-party-notice-composite-action/compare/v1.0.1...v1.0.2) (2026-01-27)
+
+
+### Bug Fixes
+
+* add missing shell ([f04059e](https://github.com/agrc/third-party-notice-composite-action/commit/f04059efbf1e8cf5fb89fb5b1eb6d948e14b36ab))
+
 ## [1.0.1](https://github.com/agrc/third-party-notice-composite-action/compare/v1.0.0...v1.0.1) (2026-01-27)
 
 
