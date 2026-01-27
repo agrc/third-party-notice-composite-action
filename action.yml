@@ -90,7 +90,9 @@ runs:
         echo '```' >> $GITHUB_STEP_SUMMARY
 
     - name: 🏗️ Generate 3rd party notices
+      shell: bash
       run: npx generate-license-file --config glf.json
 
     - name: 🧹 Cleanup configuration
+      shell: bash
       run: rm glf.json
