@@ -93,6 +93,10 @@ runs:
       shell: bash
       run: npm install -g generate-license-file
 
+    - name: 📦 Enable corepack for pnpm/yarn support
+      shell: bash
+      run: corepack enable
+
     - name: 🏗️ Generate 3rd party notices
       shell: bash
       run: generate-license-file --config glf.json
