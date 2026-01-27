@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.1](https://github.com/agrc/third-party-notice-composite-action/compare/v1.0.0...v1.0.1) (2026-01-27)
+
+
+### Features
+
+* generate notices within composite ([26e14ac](https://github.com/agrc/third-party-notice-composite-action/commit/26e14ac599bc89495fc9b42e0fd09f7c37691022))
+
+
+### Documentation
+
+* synchronize with features ([0c4425d](https://github.com/agrc/third-party-notice-composite-action/commit/0c4425d1d2c4c1c18cb95e7806bb19074c29b7b2))
+
 ## 1.0.0 (2026-01-26)
 
 
