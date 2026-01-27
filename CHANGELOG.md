@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/agrc/third-party-notice-composite-action/compare/v1.0.3...v1.0.4) (2026-01-27)
+
+
+### Bug Fixes
+
+* add corepack for package manager support ([5513c6c](https://github.com/agrc/third-party-notice-composite-action/commit/5513c6c53e3caaf60ae576b38092c8838646215f))
+
 ## [1.0.3](https://github.com/agrc/third-party-notice-composite-action/compare/v1.0.2...v1.0.3) (2026-01-27)
 
 
