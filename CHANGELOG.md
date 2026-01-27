@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.8](https://github.com/agrc/third-party-notice-composite-action/compare/v1.0.7...v1.0.8) (2026-01-27)
+
+
+### Bug Fixes
+
+* working-directory requires run ([f0b499d](https://github.com/agrc/third-party-notice-composite-action/commit/f0b499def55f73ee6a87ab0252cf2f463a9edaa3))
+
 ## [1.0.7](https://github.com/agrc/third-party-notice-composite-action/compare/v1.0.6...v1.0.7) (2026-01-27)
 
 
