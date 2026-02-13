@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.9](https://github.com/agrc/third-party-notice-composite-action/compare/v1.0.8...v1.0.9) (2026-02-13)
+
+
+### Bug Fixes
+
+* update replacements ([a9b8b51](https://github.com/agrc/third-party-notice-composite-action/commit/a9b8b5175579db5b3d92a6ba23b61af6cd6f58cc))
+
 ## [1.0.8](https://github.com/agrc/third-party-notice-composite-action/compare/v1.0.7...v1.0.8) (2026-01-27)
 
 
