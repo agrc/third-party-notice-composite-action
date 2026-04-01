@@ -118,7 +118,7 @@ runs:
         fi
 
     - name: 📦 Setup PNPM
-      uses: pnpm/action-setup@v4
+      uses: pnpm/action-setup@v5
       if: steps.package-manager.outputs.name == 'pnpm'
       with:
         version: latest
