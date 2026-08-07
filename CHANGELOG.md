@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.11](https://github.com/agrc/third-party-notice-composite-action/compare/v1.0.10...v1.0.11) (2026-08-07)
+
+
+### Dependencies
+
+* bump the ci-dependencies group with 2 updates ([72a27dc](https://github.com/agrc/third-party-notice-composite-action/commit/72a27dc03ea94d0a8a45140fb9e5984f42884a31))
+
 ## [1.0.10](https://github.com/agrc/third-party-notice-composite-action/compare/v1.0.9...v1.0.10) (2026-05-20)
 
 
