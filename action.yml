@@ -118,13 +118,13 @@ runs:
         fi
 
     - name: 📦 Setup PNPM
-      uses: pnpm/action-setup@v6.0.9
+      uses: pnpm/action-setup@v6.1.0
       if: steps.package-manager.outputs.name == 'pnpm'
       with:
         version: latest
 
     - name: ⎔ Setup Node.js
-      uses: actions/setup-node@v6
+      uses: actions/setup-node@v7
       with:
         node-version: ${{ inputs.node-version }}
         cache: ${{ steps.package-manager.outputs.name }}
